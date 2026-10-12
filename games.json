@@ -1,0 +1,66 @@
+[
+  {
+    "id": "snake",
+    "title": "Snake",
+    "category": "Arcade",
+    "description": "Classic arcade action with growing length and quick reflexes.",
+    "icon": "🐍",
+    "iframeUrl": "games/snake.html"
+  },
+  {
+    "id": "tictactoe",
+    "title": "Tic-Tac-Toe",
+    "category": "Classic",
+    "description": "A quick head-to-head puzzle against a friend or yourself.",
+    "icon": "✖️",
+    "iframeUrl": "games/tictactoe.html"
+  },
+  {
+    "id": "puzzle-2048",
+    "title": "2048",
+    "category": "Puzzle",
+    "description": "Slide tiles together and chase the 2048 goal.",
+    "icon": "🎯",
+    "iframeUrl": "games/2048.html"
+  },
+  {
+    "id": "baseball-bros",
+    "title": "Baseball Bros",
+    "category": "Arcade",
+    "description": "Swing and hit your way to victory in this fast-paced baseball game.",
+    "icon": "⚾",
+    "iframeUrl": "https://itch.io/embed-upload/8534562?link_id=0"
+  },
+  {
+    "id": "snow-rider-3d",
+    "title": "Snow Rider 3D",
+    "category": "Arcade",
+    "description": "Shred down snowy slopes with awesome tricks and stunts.",
+    "icon": "🏂",
+    "iframeUrl": "https://itch.io/embed-upload/6143141?link_id=0"
+  },
+  {
+    "id": "basketball-bros",
+    "title": "Basketball Bros",
+    "category": "Arcade",
+    "description": "Dunk, shoot, and dominate the court in this basketball showdown.",
+    "icon": "🏀",
+    "iframeUrl": "https://itch.io/embed-upload/8534564?link_id=0"
+  },
+  {
+    "id": "poly-track",
+    "title": "Poly Track",
+    "category": "Puzzle",
+    "description": "Draw geometric shapes to create your racing track.",
+    "icon": "🏁",
+    "iframeUrl": "https://itch.io/embed-upload/5089356?link_id=0"
+  },
+  {
+    "id": "google-doodle-baseball",
+    "title": "Google Doodle Baseball",
+    "category": "Classic",
+    "description": "The classic Google Doodle baseball game — hit home runs and win games.",
+    "icon": "🎮",
+    "iframeUrl": "https://www.google.com/logos/2019/baseball19/baseball19.html"
+  }
+]
