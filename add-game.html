@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Game - Unblocked Games</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #1f2937;
+      --primary: #22c55e;
+      --primary-2: #34d399;
+      --highlight: #fbbf24;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --shadow: rgba(15, 23, 42, 0.35);
+      --border: rgba(148, 163, 184, 0.2);
+      --error: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0b1120 0%, #111827 100%);
+      color: var(--text);
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .nav-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      background: rgba(52, 211, 153, 0.1);
+      color: var(--primary-2);
+      text-decoration: none;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      transition: 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(52, 211, 153, 0.2);
+    }
+
+    .form-section {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      background: rgba(31, 41, 55, 0.6);
+      color: var(--text);
+      border-radius: 0.6rem;
+      font-size: 1rem;
+      font-family: Arial, sans-serif;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    }
+
+    .file-upload {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .file-upload input[type="file"] {
+      display: none;
+    }
+
+    .file-label {
+      display: block;
+      padding: 2rem;
+      border: 2px dashed var(--primary);
+      border-radius: 0.8rem;
+      text-align: center;
+      background: rgba(34, 197, 94, 0.05);
+      transition: 0.2s ease;
+    }
+
+    .file-upload:hover .file-label {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: var(--primary-2);
+    }
+
+    .file-name {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: 0;
+      border-radius: 0.6rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #052b16;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(52, 211, 153, 0.1);
+      color: var(--primary-2);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(52, 211, 153, 0.2);
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 0.6rem;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert-success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: var(--primary-2);
+    }
+
+    .alert-error {
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fca5a5;
+    }
+
+    .games-list {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .games-list h2 {
+      margin-top: 0;
+    }
+
+    .game-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: rgba(31, 41, 55, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .game-info {
+      flex: 1;
+    }
+
+    .game-title {
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .game-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0.3rem 0 0;
+    }
+
+    .btn-delete {
+      background: rgba(244, 63, 94, 0.1);
+      color: #fca5a5;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-delete:hover {
+      background: rgba(244, 63, 94, 0.2);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+    }
+
+    .help-text {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Add New Game</h1>
+      <a href="index.html" class="nav-link">← Back to Games</a>
+    </header>
+
+    <div id="alert" class="alert"></div>
+
+    <div class="form-section">
+      <form id="add-game-form">
+        <div class="form-group">
+          <label for="title">Game Title *</label>
+          <input type="text" id="title" name="title" required placeholder="e.g., My Cool Game">
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category *</label>
+          <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            <option value="Arcade">Arcade</option>
+            <option value="Puzzle">Puzzle</option>
+            <option value="Classic">Classic</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description *</label>
+          <textarea id="description" name="description" required placeholder="Describe your game..."></textarea>
+          <p class="help-text">Max 150 characters for best display</p>
+        </div>
+
+        <div class="form-group">
+          <label for="icon">Game Icon/Emoji *</label>
+          <input type="text" id="icon" name="icon" required placeholder="🎮" maxlength="2">
+          <p class="help-text">Use a single emoji to represent your game</p>
+        </div>
+
+        <div class="form-group">
+          <label for="html-file">Game HTML File *</label>
+          <div class="file-upload">
+            <label class="file-label" for="html-file">
+              <div>📁 Click to select your HTML file or drag and drop</div>
+              <div class="file-name" id="file-name"></div>
+            </label>
+            <input type="file" id="html-file" name="html-file" accept=".html" required>
+          </div>
+          <p class="help-text">Upload an HTML file that will be embedded as an iframe. Make sure it's self-contained and works standalone.</p>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-primary">Add Game</button>
+          <button type="reset" class="btn-secondary">Clear Form</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="games-list">
+      <h2>Current Games</h2>
+      <div id="games-container"></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('add-game-form');
+    const alertEl = document.getElementById('alert');
+    const fileInput = document.getElementById('html-file');
+    const fileNameEl = document.getElementById('file-name');
+    const gamesContainer = document.getElementById('games-container');
+
+    // File upload handling
+    fileInput.addEventListener('change', (e) => {
+      const fileName = e.target.files[0]?.name || '';
+      fileNameEl.textContent = fileName ? `Selected: ${fileName}` : '';
+    });
+
+    // Drag and drop
+    const fileLabel = document.querySelector('.file-label');
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      fileLabel.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    fileLabel.addEventListener('drop', (e) => {
+      const files = e.dataTransfer.files;
+      if (files.length > 0 && files[0].type === 'text/html') {
+        fileInput.files = files;
+        fileNameEl.textContent = `Selected: ${files[0].name}`;
+      } else {
+        showAlert('Please drop a valid HTML file', 'error');
+      }
+    });
+
+    // Load and display games
+    const loadGames = async () => {
+      try {
+        const response = await fetch('games.json');
+        const games = await response.json();
+        renderGames(games);
+      } catch (error) {
+        showAlert('Could not load games list', 'error');
+      }
+    };
+
+    const renderGames = (games) => {
+      if (!games.length) {
+        gamesContainer.innerHTML = '<div class="empty-state">No games added yet</div>';
+        return;
+      }
+
+      gamesContainer.innerHTML = games.map(game => `
+        <div class="game-item">
+          <div class="game-info">
+            <p class="game-title">${game.icon} ${game.title}</p>
+            <p class="game-meta">${game.category} • ${game.description.substring(0, 50)}...</p>
+          </div>
+          <button type="button" class="btn-delete" data-id="${game.id}">Delete</button>
+        </div>
+      `).join('');
+
+      // Add delete handlers
+      document.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', () => deleteGame(btn.dataset.id));
+      });
+    };
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const file = fileInput.files[0];
+      if (!file) {
+        showAlert('Please select an HTML file', 'error');
+        return;
+      }
+
+      try {
+        // Read file content
+        const fileContent = await file.text();
+        const gameId = Date.now().toString();
+        const fileName = `${gameId}.html`;
+
+        // Prepare game data
+        const newGame = {
+          id: gameId,
+          title: document.getElementById('title').value,
+          category: document.getElementById('category').value,
+          description: document.getElementById('description').value,
+          icon: document.getElementById('icon').value,
+          iframeUrl: `games/${fileName}`
+        };
+
+        // Get current games
+        const response = await fetch('games.json');
+        const games = await response.json();
+
+        // Add new game
+        games.push(newGame);
+
+        // Save to localStorage (since we can't directly write files in browser)
+        localStorage.setItem('games_backup', JSON.stringify(games));
+        localStorage.setItem(`game_${gameId}`, fileContent);
+
+        showAlert(`✓ Game "${newGame.title}" added! Download the backup below and update games.json manually.`, 'success');
+        
+        // Show download link
+        const gamesList = JSON.stringify(games, null, 2);
+        const blob = new Blob([gamesList], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = 'games.json';
+        downloadLink.textContent = 'Download updated games.json';
+        downloadLink.style.display = 'inline-block';
+        downloadLink.style.marginTop = '1rem';
+        downloadLink.style.color = 'var(--primary-2)';
+        downloadLink.style.textDecoration = 'underline';
+        
+        alertEl.appendChild(downloadLink);
+
+        form.reset();
+        fileNameEl.textContent = '';
+        renderGames(games);
+      } catch (error) {
+        showAlert(`Error: ${error.message}`, 'error');
+      }
+    });
+
+    const deleteGame = (gameId) => {
+      if (!confirm('Are you sure you want to delete this game?')) return;
+
+      try {
+        const gamesData = localStorage.getItem('games_backup');
+        if (gamesData) {
+          const games = JSON.parse(gamesData);
+          const filtered = games.filter(g => g.id !== gameId);
+          localStorage.setItem('games_backup', JSON.stringify(filtered));
+          localStorage.removeItem(`game_${gameId}`);
+
+          const gamesList = JSON.stringify(filtered, null, 2);
+          const blob = new Blob([gamesList], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const downloadLink = document.createElement('a');
+          downloadLink.href = url;
+          downloadLink.download = 'games.json';
+          downloadLink.click();
+
+          renderGames(filtered);
+          showAlert('Game deleted! Updated games.json downloaded.', 'success');
+        }
+      } catch (error) {
+        showAlert('Error deleting game', 'error');
+      }
+    };
+
+    const showAlert = (message, type) => {
+      alertEl.textContent = message;
+      alertEl.className = `alert show alert-${type}`;
+      setTimeout(() => alertEl.classList.remove('show'), 5000);
+    };
+
+    loadGames();
+  </script>
+</body>
+</html>
